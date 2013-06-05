@@ -5,7 +5,6 @@
 # Licensed under the Simplified BSD License. See LICENSE for full
 # license.
 #######################################################################
-
 import ConfigParser
 import json
 import os
@@ -141,18 +140,17 @@ def fetch_cmd(cfg, parser, parsed, args):
     print 'Found {0} videos...'.format(video_feed.video_count)
     for i, video in enumerate(video_feed):
         if video.title:
-            filename = video.title.replace(' ', '_')
-            filename = ''.join([c for c in filename if c in ALLOWED_LETTERS])
+            filename = video.title
             filename = '_' + filename
         else:
             filename = ''
 
         filename = '{0:04d}{1}.json'.format(i, filename[:40])
 
-        print 'Working on {0}... ({1})'.format(
-            unicodedata.normalize('NFKD', video.title).encode(
-                'ascii', 'ignore'),
-            filename)
+        # print 'Working on {0}... ({1})'.format(
+        #     unicodedata.normalize('NFKD', video.title).encode(
+        #         'ascii', 'ignore'),
+        #     filename)
         item = vidscraper_to_dict(video, youtube_embed=youtube_embed)
 
         f = open(os.path.join('json', filename), 'w')
@@ -199,8 +197,8 @@ def status_cmd(cfg, parser, parsed, args):
     else:
         if in_progress_files:
             for fn, whiteboard in in_progress_files:
-                out(u'{0}: {1}'.format(fn, term.bold(whiteboard)),
-                    wrap=False)
+                print(fn)
+                print(term.bold(whiteboard))
 
         if done_files:
             out('')

@@ -98,32 +98,32 @@ field.
 
 ::
 
-    import steve.util
+import steve.util
 
-    cfg = steve.util.get_project_config()
-    data = steve.util.load_json_files(cfg)
+cfg = steve.util.get_project_config()
+data = steve.util.load_json_files(cfg)
 
-    for fn, contents in data:
-        print fn
+for fn, contents in data:
+    print fn
 
-        # If the data already has speakers, then we assume we've already
-        # operated on it and don't operate on it again.
-        if contents['speakers']:
-            continue
+    # If the data already has speakers, then we assume we've already
+    # operated on it and don't operate on it again.
+    if contents['speakers']:
+        continue
 
-        summary = contents['summary']
-        summary = summary.split('\n')
+    summary = contents['summary']
+    summary = summary.split('\n')
 
-        # The speakers field is a list of strings. So we remove the first
-        # line of the summary, strip the whitespace from it, and put that
-        # in the speakers field.
-        # (NB: This bombs out if the summary field is empty.)
-        contents['speakers'].append(summary.pop(0).strip())
+    # The speakers field is a list of strings. So we remove the first
+    # line of the summary, strip the whitespace from it, and put that
+    # in the speakers field.
+    # (NB: This bombs out if the summary field is empty.)
+    contents['speakers'].append(summary.pop(0).strip())
 
-        # Put the rest of the summary back.
-        contents['summary'] = '\n'.join(summary)
+    # Put the rest of the summary back.
+    contents['summary'] = '\n'.join(summary)
 
-    steve.util.save_json_files(cfg, data)
+steve.util.save_json_files(cfg, data)
 
 
 Convert summary and description to Markdown
