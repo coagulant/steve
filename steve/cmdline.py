@@ -145,7 +145,7 @@ def fetch_cmd(cfg, parser, parsed, args):
         else:
             filename = ''
 
-        filename = '{0:04d}{1}.json'.format(i, filename[:40])
+        filename = u'{0:04d}{1}.json'.format(i, filename[:40])
 
         # print 'Working on {0}... ({1})'.format(
         #     unicodedata.normalize('NFKD', video.title).encode(
