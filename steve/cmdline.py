@@ -378,8 +378,8 @@ def push_cmd(cfg, parser, parsed, args):
                 err('   "{0}"'.format(exc.response.content))
 
         else:
-            out('Updating {0} "{1}" ({2})'.format(
-                contents['id'], contents['title'], fn))
+            #out('Updating {0} "{1}" ({2})'.format(
+            #    contents['id'], contents['title'], fn))
             try:
                 vid = steve.restapi.get_content(
                     api.video(contents['id']).put(
